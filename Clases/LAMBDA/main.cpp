@@ -1,7 +1,7 @@
-// ...existing code...
 #include <iostream>
 #include <functional>
 #include <cstdlib>
+#include <limits>
 
 int main() {
     // reservar memoria para matrices 3x3 como bloques lineales de 9 enteros
@@ -15,14 +15,24 @@ int main() {
         return 1;
     }
 
-    // inicializar m1 y m2 sin usar corchetes, solo aritmética de punteros
-    *(m1 + 0) = 1; *(m1 + 1) = 2; *(m1 + 2) = 3;
-    *(m1 + 3) = 4; *(m1 + 4) = 5; *(m1 + 5) = 6;
-    *(m1 + 6) = 7; *(m1 + 7) = 8; *(m1 + 8) = 9;
+    // leer matriz desde teclado sin usar corchetes (solo aritmética de punteros)
+    auto leer_matriz = [&](int *mat, const char *nombre) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                int idx = i * 3 + j;
+                while (true) {
+                    std::cout << nombre << " (" << i + 1 << "," << j + 1 << "): ";
+                    if (std::cin >> *(mat + idx)) break;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cout << "Entrada no valida. Intente de nuevo.\n";
+                }
+            }
+        }
+    };
 
-    *(m2 + 0) = 9; *(m2 + 1) = 8; *(m2 + 2) = 7;
-    *(m2 + 3) = 6; *(m2 + 4) = 5; *(m2 + 5) = 4;
-    *(m2 + 6) = 3; *(m2 + 7) = 2; *(m2 + 8) = 1;
+    leer_matriz(m1, "Matriz 1");
+    leer_matriz(m2, "Matriz 2");
 
     // lambda recursiva para sumar elemento por elemento usando índices lineales
     std::function<void(int)> sumar = [&](int idx) {
