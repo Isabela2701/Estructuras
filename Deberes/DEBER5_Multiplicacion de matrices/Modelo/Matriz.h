@@ -25,7 +25,7 @@ public:
     int getFilas() { return filas; }
     int getColumnas() { return columnas; }
 
-    // Reservar memoria
+
     void segmentar() {
         try {
             datos = (T*)malloc(filas * columnas * sizeof(T));
@@ -36,7 +36,6 @@ public:
         }
     }
 
-    // Inicializar en cero
     void encerar() {
         int total = filas * columnas;
         for (int i = 0; i < total; i++) {
@@ -44,21 +43,20 @@ public:
         }
     }
 
-    // Asignar valor usando punteros
     void setValor(int fila, int col, T valor) {
         if (fila < 0 || fila >= filas || col < 0 || col >= columnas)
             throw "Indice fuera de rango";
         *(datos + fila * columnas + col) = valor;
     }
 
-    // Obtener valor
+   
     T getValor(int fila, int col) {
         if (fila < 0 || fila >= filas || col < 0 || col >= columnas)
             throw "Indice fuera de rango";
         return *(datos + fila * columnas + col);
     }
 
-    // Multiplicación de matrices
+ 
     Matriz operator*(Matriz& otra) {
         if (columnas != otra.getFilas())
             throw "Dimensiones incompatibles para multiplicacion";
@@ -83,7 +81,7 @@ public:
         return resultado;
     }
 
-    // Mostrar matriz
+
     void mostrar() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
