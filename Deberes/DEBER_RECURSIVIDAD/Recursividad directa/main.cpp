@@ -13,13 +13,19 @@ int main() {
         cin >> *(arr + i);
     }
 
-    function<int(int)> suma = [&](int i) -> int {
-        if (i < 0) return 0; 
-        return *(arr + i) + suma(i - 1); 
+    int resultado;
+    function<void(int, int&)> suma = [&](int i, int& res) -> void {
+        if (i < 0) {
+            res = 0;
+            return;
+        }
+        suma(i - 1, res);
+        res += *(arr + i);
     };
 
-    cout << "\nSuma total: " << suma(n - 1) << endl;
+    suma(n - 1, resultado);
+    cout << "\nSuma total: " << resultado << endl;
 
     delete[] arr;
+    
 }
-
