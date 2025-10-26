@@ -13,15 +13,29 @@ int main() {
         cin >> *(arr + i);
     }
 
-    function<int(int)> nestedRec = [&](int i) -> int {
-        if (i < 0) return 0;
-        if (i % 2 == 0)
-            return *(arr + i) + nestedRec(nestedRec(i - 1) - 1);
-        else
-            return *(arr + i) + nestedRec(i - 1);
+    function<void(int, int&)> nestedRec = [&](int i, int& res) -> void {
+        if (i < 0) {
+            res = 0;
+            return;
+        }
+        
+        if (i % 2 == 0) {
+            int temp1, temp2;
+            nestedRec(i - 1, temp1);
+            nestedRec(temp1 - 1, temp2);
+            res = *(arr + i) + temp2;
+        } 
+        else 
+        {
+            int temp;
+            nestedRec(i - 1, temp);
+            res = *(arr + i) + temp;
+        }
     };
 
-    cout << "\nResultado: " << nestedRec(n - 1) << endl;
+    int resultado;
+    nestedRec(n - 1, resultado);
+    cout << "\nResultado: " << resultado << endl;
 
     delete[] arr;
     return 0;

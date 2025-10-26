@@ -18,15 +18,24 @@ int main() {
         }
     }
 
-    function<int(int, int)> mult= [&](int i, int j) -> int {
-        if (i == filas) return 1;
-        if (j == columnas) return mult(i + 1, 0);
-        return *(*(mat + i) + j) * mult(i, j + 1); 
+    function<void(int, int, int&)> mult = [&](int i, int j, int& res) -> void {
+        if (i == filas) {
+            res = 1;
+            return;
+        }
+        if (j == columnas) {
+            mult(i + 1, 0, res);
+            return;
+        }
+        int temp;
+        mult(i, j + 1, temp);
+        res = *(*(mat + i) + j) * temp;
     };
 
-    cout << "\nProducto total: " << mult(0, 0) << endl;
+    int resultado;
+    mult(0, 0, resultado);
+    cout << "\nProducto total: " << resultado << endl;
 
     for (int i = 0; i < filas; i++) delete[] *(mat + i);
     delete[] mat;
-    return 0;
 }

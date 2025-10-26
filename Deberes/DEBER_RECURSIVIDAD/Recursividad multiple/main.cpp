@@ -23,16 +23,29 @@ int main() {
         }
     }
 
-    function<int(int, int, int)> suma= [&](int k, int i, int j) -> int {
-        if (k == profundidad) return 0;
-        if (i == filas) return suma(k + 1, 0, 0);
-        if (j == columnas) return suma(k, i + 1, 0);
-        return *(*(*(cube + k) + i) + j)
-               + suma(k, i, j + 1)
-               + suma(k + 1, i, j); 
+    function<void(int, int, int, int&)> suma = [&](int k, int i, int j, int& res) -> void {
+        if (k == profundidad) {
+            res = 0;
+            return;
+        }
+        if (i == filas) {
+            suma(k + 1, 0, 0, res);
+            return;
+        }
+        if (j == columnas) {
+            suma(k, i + 1, 0, res);
+            return;
+        }
+        
+        int temp1, temp2;
+        suma(k, i, j + 1, temp1);
+        suma(k + 1, i, j, temp2);
+        res = *(*(*(cube + k) + i) + j) + temp1 + temp2;
     };
 
-    cout << "\nSuma total: " << suma(0, 0, 0) << endl;
+    int resultado;
+    suma(0, 0, 0, resultado);
+    cout << "\nSuma total: " << resultado << endl;
 
     for (int k = 0; k < profundidad; k++) {
         for (int i = 0; i < filas; i++)

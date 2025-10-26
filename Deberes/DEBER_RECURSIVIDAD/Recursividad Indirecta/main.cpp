@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del vector: ";
+    cout << "Ingrese el tamanio del vector: ";
     cin >> n;
 
     int* arr = new int[n];
@@ -13,17 +13,30 @@ int main() {
         cin >> *(arr + i);
     }
 
-    function<int(int)> B; 
-    function<int(int)> A = [&](int i) -> int {
-        if (i == n) return 1;
-        return *(arr + i) * B(i + 1);
+    function<void(int, int&)> A, B; 
+    A = [&](int i, int& res) -> void {
+        if (i == n) {
+
+            res=1;
+            return;
+        }
+        int temp;
+        B(i+1, temp);
+        res= *(arr +i) * temp;
     };
-    B = [&](int i) -> int {
-        if (i == n) return 1;
-        return *(arr + i) * A(i + 1);
+    B = [&](int i, int& res) -> void {
+        if (i == n){
+            res=1;
+            return;
+        }
+        int temp;
+        A(i +1, temp);
+        res= *(arr + i) * temp;
     };
 
-    cout << "\nProducto total: " << A(0) << endl;
+    int resultado;
+    A(0, resultado);
+    cout<<"\nResultado:"<<resultado<<endl;
 
     delete[] arr;
 
