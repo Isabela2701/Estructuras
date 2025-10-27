@@ -102,7 +102,7 @@ void Menu::insertarCola(){
 }
 
 void Menu::eliminarCabeza(){
-    std::cout << "Eliminar Cola" << std::endl;
+    std::cout << "Eliminar Cabeza" << std::endl;
     lista.removeHead();
 }
 
