@@ -3,6 +3,10 @@
 #include <functional>
 
 ListaEnlazada::ListaEnlazada(){head=nullptr;}
+ListaEnlazada::ListaEnlazada(Nodo* PrimerNodo){
+    head=PrimerNodo;
+}
+
 void ListaEnlazada::addListTail(int d){
     if(head==nullptr){
         head=new Nodo(d);
@@ -17,6 +21,9 @@ void ListaEnlazada::addListTail(int d){
 
 void ListaEnlazada::addListHead(int d){
     Nodo* NewHead = new Nodo(d);
+    if(head==nullptr){
+        head=NewHead;
+    }
     NewHead->setSiguiente(head);
     head=NewHead;
 }
@@ -79,4 +86,54 @@ ListaEnlazada::~ListaEnlazada(){
         head = head->getSiguiente();
         delete temp;
     }
+}
+
+int ListaEnlazada::getIndice(int dato)const{
+    if(head == nullptr){
+        std::cout << "Lista vacia" << std::endl;
+        return -1;
+    }
+
+    Nodo* temp = head;
+    int index = 0;
+
+    while(temp != nullptr){
+        if(dato == temp->getDato()){
+            std::cout << "Item encontrado en indice: " << index << std::endl;
+            return index;
+        }
+        temp = temp->getSiguiente();
+        index++;
+    }
+
+    std::cout << "Elemento no encontrado en la lista" << std::endl;
+    return -1;
+}
+
+
+int ListaEnlazada::getDato(int index)const{
+    std::cout << "getDato(" << index << ") llamado" << std::endl;
+    
+    if (head == nullptr) {
+        std::cout << "ERROR: Lista vacía" << std::endl;
+        return 0;
+    }
+    
+    int counter = 0;
+    Nodo* temp = head;
+    
+    std::cout << "Recorriendo lista..." << std::endl;
+    while (temp != nullptr) {
+        std::cout << "Nodo " << counter << ": valor = " << temp->getDato();
+        if (counter == index) {
+            std::cout << " <- ENCONTRADO" << std::endl;
+            return temp->getDato();
+        }
+        std::cout << std::endl;
+        temp = temp->getSiguiente();
+        counter++;
+    }
+    
+    std::cout << "ERROR: Índice " << index << " fuera de rango. Último índice: " << (counter-1) << std::endl;
+    return 0;
 }
