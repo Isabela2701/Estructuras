@@ -5,9 +5,9 @@
 
 class Menu {
 private:
-    ListaEnlazada lista;
+    ListaEnlazada* lista;
 public:
-    Menu(ListaEnlazada);
+    Menu(ListaEnlazada* listanew);
     void mostrarMenu();
     void insertarCabeza();
     void insertarCola();
@@ -18,3 +18,4 @@ public:
 };
 
 #endif 
+

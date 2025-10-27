@@ -7,25 +7,25 @@ ListaEnlazada::ListaEnlazada(Nodo* PrimerNodo){
     head=PrimerNodo;
 }
 
-void ListaEnlazada::addListTail(int d){
-    if(head==nullptr){
-        head=new Nodo(d);
+void ListaEnlazada::addListTail(int d) {
+    if (head == nullptr) {
+        head = new Nodo(d);
         return;
     }
+    
     Nodo* tmp = head;
-    while(tmp->getSiguiente()!=nullptr){
+    
+    while (tmp->getSiguiente() != nullptr) {
         tmp = tmp->getSiguiente();
     }
+    
     tmp->setSiguiente(new Nodo(d));
 }
 
 void ListaEnlazada::addListHead(int d){
     Nodo* NewHead = new Nodo(d);
-    if(head==nullptr){
-        head=NewHead;
-    }
-    NewHead->setSiguiente(head);
-    head=NewHead;
+    NewHead->setSiguiente(head);  
+    head = NewHead;               
 }
 
 void ListaEnlazada::removeHead(){
@@ -134,6 +134,22 @@ int ListaEnlazada::getDato(int index)const{
         counter++;
     }
     
+    
     std::cout << "ERROR: Índice " << index << " fuera de rango. Último índice: " << (counter-1) << std::endl;
     return 0;
+}
+
+int ListaEnlazada::getCapacity()const{
+
+    if(head==nullptr){
+        std::cout<<"Lista Vacia"<<std::endl;
+        return 0;
+    }
+    int cont=0;
+    Nodo* tmp=head;
+    while(tmp!=nullptr){
+        cont++;
+        tmp=tmp->getSiguiente();
+    }
+    return cont;
 }
