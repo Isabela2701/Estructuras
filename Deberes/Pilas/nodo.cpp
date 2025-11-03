@@ -1,5 +1,5 @@
 #include "nodo.hpp"
-
+#include <iostream>
 nodo::nodo(int dato){
     Siguiente=nullptr;
     Anterior=nullptr;

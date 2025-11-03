@@ -1,8 +1,6 @@
 #ifndef PILA_HPP
 #define PILA_HPP
-
-#include "../Nodo/nodo.hpp"
-
+#include  "nodo.hpp"
 class pilas{
     private:
     nodo* Top;
@@ -12,8 +10,9 @@ class pilas{
     ~pilas();
     void push(int);
     void pop();
+    
     bool isEmpty()const;
-    void peek()const;
+    int peek()const;
     void display()const;
     void editTop(int);
 };
