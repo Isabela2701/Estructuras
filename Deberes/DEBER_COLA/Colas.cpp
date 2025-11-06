@@ -1,0 +1,119 @@
+#include <iostream>
+#include "Colas.hpp"
+
+Colas::Colas(){
+    Cabeza=nullptr;
+    Cola=nullptr;
+}
+
+Colas::Colas(int dato){
+    Cabeza=new Nodo(dato);
+    Cola=Cabeza;
+}
+
+Colas::~Colas(){
+
+    while(Cabeza!=nullptr){
+        Nodo* tmp=Cabeza;
+        Cabeza=Cabeza->getSiguiente();
+        delete tmp;
+    }
+    Cola=nullptr;
+}
+
+void Colas::insertarColas(int dato){
+    Nodo* nuevo_nodo =new Nodo(dato);
+    if(isEmpty()){
+        Cabeza=nuevo_nodo;
+        Cola=nuevo_nodo;
+    }
+    else{
+        Cola->setSiguiente(nuevo_nodo);
+        Cola=nuevo_nodo;    
+    }
+}
+
+void Colas::eliminarColas(){
+    if(Cabeza==nullptr){
+        std::cout<<"\nLa cola esta vacia"<<std::endl;
+        return;
+    }
+    Nodo* tmp=Cabeza;
+    Cabeza=Cabeza->getSiguiente();
+    delete tmp;
+
+    if(Cabeza==nullptr){
+        Cola=nullptr;
+    }
+}
+
+void Colas::editarCola(int nuevoDato){
+    if (Cola != nullptr) {
+        Cola->setDato(nuevoDato);
+    }
+}
+
+void Colas::mostrarColas()const{
+    Nodo* actual=Cabeza;
+    while(actual!=nullptr){
+        std::cout<<actual->getDato()<<" ";
+        actual=actual->getSiguiente();
+    }
+}
+
+bool Colas::isEmpty()const{
+    if(Cabeza==nullptr)
+    return true;
+    return false;
+
+}
+
+int Colas::consultarCabeza()const{
+    if(Cabeza==nullptr){
+        std::cout<<"\nCola vacia"<<std::endl;
+        return 0;
+    }
+    return Cabeza->getDato();
+}
+
+
+int Colas::consultarCola()const{
+    if(Cabeza==nullptr){
+        std::cout<<"\nCola vacia"<<std::endl;
+        return 0;
+    }
+    return Cabeza->getDato();
+}
+
+int Colas::mostrarTamanio()const{
+    int contador=0;
+    Nodo* actual=Cabeza;
+    while(actual!=nullptr){
+        actual=actual->getSiguiente();
+        contador++;
+    }
+    return contador;
+}
+
+int Colas::sumarElementosCola()const{
+    int resultado=0;
+    Nodo* tmp=Cabeza;
+    while(tmp!=nullptr){
+        int vtmp=tmp->getDato();
+        resultado=vtmp+resultado;
+        tmp=tmp->getSiguiente();
+    }
+    return resultado;
+}
+
+int Colas::multiplicarElementosCola()const{
+    int resultado=1;
+    Nodo* tmp=Cabeza;
+    while(tmp!=nullptr){
+        int vtmp=tmp->getDato();
+        resultado=vtmp*resultado;
+        tmp=tmp->getSiguiente();
+    }
+    return resultado;
+
+}

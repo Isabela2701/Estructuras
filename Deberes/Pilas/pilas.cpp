@@ -35,7 +35,8 @@ void pilas::pop() {
 }
 
 bool pilas::isEmpty() const {
-    return Top == nullptr;
+   
+        return Top == nullptr;
 }
 
 int pilas::peek() const {
