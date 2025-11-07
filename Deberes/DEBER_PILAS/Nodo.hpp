@@ -10,7 +10,7 @@ class Nodo{
     public:
     Nodo(int);
     Nodo(Nodo* ,int);
-    int getDato();
+    int getDato()const;
     void setDato(int);
     Nodo* getSiguiente()const;
     void setSiguiente(Nodo*);

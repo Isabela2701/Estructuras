@@ -19,7 +19,7 @@ void Nodo::setSiguiente(Nodo* siguiente){
     Siguiente=siguiente;
 }
 
-int Nodo::getDato(){
+int Nodo::getDato()const{
     return Dato;
 }
 

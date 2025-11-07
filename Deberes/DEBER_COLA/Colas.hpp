@@ -22,5 +22,9 @@ class Colas{
 
     int sumarElementosCola()const;
     int multiplicarElementosCola()const;
+    int sumarParesCola()const;
+    int sumarImparesCola()const;
+    int multiplicarParesCola()const;
+    int multiplicarImparesCola()const;
 };
 #endif

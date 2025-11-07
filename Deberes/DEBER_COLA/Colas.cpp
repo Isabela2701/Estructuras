@@ -78,11 +78,11 @@ int Colas::consultarCabeza()const{
 
 
 int Colas::consultarCola()const{
-    if(Cabeza==nullptr){
+    if(Cola==nullptr){
         std::cout<<"\nCola vacia"<<std::endl;
         return 0;
     }
-    return Cabeza->getDato();
+    return Cola->getDato();
 }
 
 int Colas::mostrarTamanio()const{
@@ -116,4 +116,73 @@ int Colas::multiplicarElementosCola()const{
     }
     return resultado;
 
+}
+
+
+int Colas::sumarParesCola()const{
+    int suma = 0;
+    const Nodo* tmp = Cabeza;
+    
+    while(tmp != nullptr){
+        int dato = tmp->getDato(); 
+        
+        if ((dato % 2) == 0) {
+            suma =dato+suma;
+        }
+        tmp = tmp->getSiguiente();
+    }
+    return suma;
+}
+
+int Colas::sumarImparesCola()const{
+    int suma = 0;
+    const Nodo* tmp = Cabeza;
+    
+    while(tmp != nullptr){
+        int dato = tmp->getDato();
+        
+        if ((dato % 2) != 0) {
+            suma = dato+suma;
+        }
+        tmp = tmp->getSiguiente();
+    }
+    return suma;
+}
+
+int Colas::multiplicarParesCola()const{
+    
+    int producto = 1;
+    const Nodo* tmp = Cabeza;
+    bool pares_encontrados = false; 
+    while(tmp != nullptr){
+        int dato = tmp->getDato();
+        
+        if ((dato % 2) == 0) {
+            producto= dato*producto;
+            pares_encontrados = true;
+        }
+        
+        tmp = tmp->getSiguiente();
+    }
+
+    return producto;
+}
+
+int Colas::multiplicarImparesCola()const{
+    
+    int producto = 1;
+    const Nodo* tmp = Cabeza;
+    bool pares_encontrados = false; 
+    while(tmp != nullptr){
+        int dato = tmp->getDato();
+        
+        if ((dato % 2)!= 0) {
+            producto= dato*producto;
+            pares_encontrados = true;
+        }
+        
+        tmp = tmp->getSiguiente();
+    }
+
+    return producto;
 }

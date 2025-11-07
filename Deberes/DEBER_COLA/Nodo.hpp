@@ -10,7 +10,7 @@ class Nodo{
     Nodo(int);
     Nodo(int, Nodo*);
 
-    int getDato();
+    int getDato()const;
     void setDato(int);
     Nodo* getSiguiente()const;
     void setSiguiente(Nodo*);
