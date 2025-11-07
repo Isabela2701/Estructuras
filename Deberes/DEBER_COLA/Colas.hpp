@@ -26,5 +26,7 @@ class Colas{
     int sumarImparesCola()const;
     int multiplicarParesCola()const;
     int multiplicarImparesCola()const;
+    void mostrarParesCola()const;
+    void mostrarImparesCola()const;
 };
 #endif

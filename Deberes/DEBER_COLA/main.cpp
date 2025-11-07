@@ -27,6 +27,10 @@ int main (){
     std::cout<<cola1.sumarImparesCola()<<std::endl;
     std::cout<<cola1.multiplicarParesCola()<<std::endl;
     std::cout<<cola1.multiplicarImparesCola()<<std::endl;
+    
+    cola1.mostrarImparesCola();
+    std::cout<<std::endl;
+    cola1.mostrarParesCola();
 
 
 }

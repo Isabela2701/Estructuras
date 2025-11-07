@@ -161,10 +161,8 @@ int Colas::multiplicarParesCola()const{
             producto= dato*producto;
             pares_encontrados = true;
         }
-        
         tmp = tmp->getSiguiente();
     }
-
     return producto;
 }
 
@@ -180,9 +178,49 @@ int Colas::multiplicarImparesCola()const{
             producto= dato*producto;
             pares_encontrados = true;
         }
-        
         tmp = tmp->getSiguiente();
     }
-
     return producto;
+}
+
+void Colas::mostrarParesCola()const {
+    
+    Nodo* actual = Cabeza;
+    bool hay_pares = false;
+    while (actual != nullptr) {
+        int dato = actual->getDato();
+    
+        if ((dato % 2) == 0) {
+            std::cout << dato << " ";
+            hay_pares = true;
+        }
+        actual = actual->getSiguiente();
+    }
+    if (!hay_pares && Cabeza != nullptr) {
+        std::cout << "No hay numeros pares.";
+    } else if (Cabeza == nullptr) {
+        std::cout << "La cola esta vacia.";
+    }
+    std::cout << std::endl;
+}
+
+void Colas::mostrarImparesCola()const {
+    
+    Nodo* actual = Cabeza;
+    bool hay_pares = false;
+    while (actual != nullptr) {
+        int dato = actual->getDato();
+    
+        if ((dato % 2)!= 0) {
+            std::cout << dato << " ";
+            hay_pares = true;
+        }
+        actual = actual->getSiguiente();
+    }
+    if (!hay_pares && Cabeza != nullptr) {
+        std::cout << "No hay numeros pares.";
+    } else if (Cabeza == nullptr) {
+        std::cout << "La cola esta vacia.";
+    }
+    std::cout << std::endl;
 }
