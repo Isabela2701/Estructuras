@@ -28,5 +28,7 @@ class Colas{
     int multiplicarImparesCola()const;
     void mostrarParesCola()const;
     void mostrarImparesCola()const;
+    int sumarImparesRecursivo() const;
+    void mostrarImparesReversaFuncional() const;
 };
 #endif

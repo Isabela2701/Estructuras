@@ -42,10 +42,12 @@ int main() {
     
     std::cout << "Suma Pares: " << lista1.sumarParesLista() << std::endl;       
     std::cout << "Suma Impares: " << lista1.sumarImparesLista() << std::endl;   
+    std::cout << "Suma Impares: " << lista1.sumarImparesRecursivo() << std::endl;   
     std::cout << "Multiplicación Pares: " << lista1.multiplicarParesLista() << std::endl;     
     std::cout << "Multiplicación Impares: " << lista1.multiplicarImparesLista() << std::endl;
     
     std::cout << "\n--- Mostrar Pares/Impares ---" << std::endl;
     lista1.mostrarParesLista();
     lista1.mostrarImparesLista();
+    lista1.mostrarImparesReversaFuncional();
 }

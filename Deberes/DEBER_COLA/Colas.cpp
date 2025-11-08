@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 #include "Colas.hpp"
 
 Colas::Colas(){
@@ -223,4 +224,24 @@ void Colas::mostrarImparesCola()const {
         std::cout << "La cola esta vacia.";
     }
     std::cout << std::endl;
+}
+
+
+int Colas::sumarImparesRecursivo() const {
+    
+    std::function<int(const Nodo*)> sumar_impares = [&](const Nodo* actual) -> int {
+        
+        if (actual == nullptr) {
+            return 0;
+        }
+
+        int dato = actual->getDato();
+        int suma_actual = 0;
+        if ((dato % 2) != 0) {
+            suma_actual = dato;
+        }
+        
+        return suma_actual + sumar_impares(actual->getSiguiente());
+    };
+    return sumar_impares(Cabeza);
 }
