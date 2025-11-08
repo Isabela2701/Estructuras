@@ -39,6 +39,8 @@ class Lista{
     int multiplicarImparesLista() const;
     void mostrarParesLista() const;
     void mostrarImparesLista() const;
+    int sumarImparesRecursivo() const;
+    void mostrarImparesReversaFuncional() const;
 
 };
 

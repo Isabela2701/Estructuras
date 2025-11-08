@@ -1,5 +1,6 @@
 #include "Lista.hpp"
 #include <iostream>
+#include <functional>
 
 Lista::Lista(){
     Cabeza=nullptr;
@@ -326,5 +327,42 @@ void Lista::mostrarImparesLista() const {
         }
         actual = actual->getSiguiente();
     }
+    std::cout << std::endl;
+}
+
+int Lista::sumarImparesRecursivo() const {
+    
+    std::function<int(const Nodo*)> sumar_impares = [&](const Nodo* actual) -> int {
+        
+        if (actual == nullptr) {
+            return 0;
+        }
+
+        int dato = actual->getDato();
+        int suma_actual = 0;
+        if ((dato % 2) != 0) {
+            suma_actual = dato;
+        }
+        return suma_actual + sumar_impares(actual->getSiguiente());
+    };
+    return sumar_impares(Cabeza);
+}
+
+void Lista::mostrarImparesReversaFuncional() const {
+   
+    std::function<void(const Nodo*)> mostrar_reverso = [&](const Nodo* actual) -> void {
+        
+        if (actual == nullptr) {
+            return;
+        }
+        mostrar_reverso(actual->getSiguiente());
+        int dato = actual->getDato();
+        if ((dato % 2) != 0) { 
+            std::cout << dato << " ";
+        }
+    };
+
+    std::cout << "Impares en Reversa: ";
+    mostrar_reverso(Cabeza);
     std::cout << std::endl;
 }
