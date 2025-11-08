@@ -20,5 +20,7 @@ class Pilas{
 
     int sumarElementospila()const;
     int multiplicarElementospila()const;
+    void mostrarParesPila()const;
+    void mostrarImparesPila()const;
 };
 #endif

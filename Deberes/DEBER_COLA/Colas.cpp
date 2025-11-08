@@ -218,7 +218,7 @@ void Colas::mostrarImparesCola()const {
         actual = actual->getSiguiente();
     }
     if (!hay_pares && Cabeza != nullptr) {
-        std::cout << "No hay numeros pares.";
+        std::cout << "No hay numeros impares.";
     } else if (Cabeza == nullptr) {
         std::cout << "La cola esta vacia.";
     }

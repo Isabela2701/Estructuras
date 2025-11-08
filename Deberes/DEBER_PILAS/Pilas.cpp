@@ -97,3 +97,51 @@ int Pilas::multiplicarElementospila()const{
     return resultado;
 
 }
+
+void Pilas::mostrarParesPila()const {
+    
+    Nodo* actual = Cabeza;
+    bool hay_pares = false;
+
+    while (actual != nullptr) {
+        int dato = actual->getDato();
+        
+        if ((dato % 2) == 0) {
+            std::cout << dato << " ";
+            hay_pares = true;
+        }
+        
+        actual = actual->getSiguiente();
+    }
+        if (!hay_pares && Cabeza != nullptr) {
+        std::cout << "No hay numeros pares.";
+    } else if (Cabeza == nullptr) {
+        std::cout << "La pila esta vacia.";
+    }
+    
+    std::cout << std::endl;
+}
+
+void Pilas::mostrarImparesPila()const {
+    
+    Nodo* actual = Cabeza;
+    bool hay_pares = false;
+
+    while (actual != nullptr) {
+        int dato = actual->getDato();
+        
+        if ((dato % 2)!= 0) {
+            std::cout << dato << " ";
+            hay_pares = true;
+        }
+        
+        actual = actual->getSiguiente();
+    }
+        if (!hay_pares && Cabeza != nullptr) {
+        std::cout << "No hay numeros impares.";
+    } else if (Cabeza == nullptr) {
+        std::cout << "La pila esta vacia.";
+    }
+    
+    std::cout << std::endl;
+}
