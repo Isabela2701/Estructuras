@@ -245,3 +245,23 @@ int Colas::sumarImparesRecursivo() const {
     };
     return sumar_impares(Cabeza);
 }
+
+
+void Colas::mostrarImparesReversaFuncional() const {
+    
+    std::function<void(const Nodo*)> mostrar_reverso = [&](const Nodo* actual) -> void {
+        
+        if (actual == nullptr) {
+            return;
+        }
+        mostrar_reverso(actual->getSiguiente());
+        int dato = actual->getDato();
+        if ((dato % 2) != 0) {
+            std::cout << dato << " ";
+        }
+    };
+
+    std::cout << "Impares en Reversa (Cola): ";
+    mostrar_reverso(Cabeza);
+    std::cout << std::endl;
+}

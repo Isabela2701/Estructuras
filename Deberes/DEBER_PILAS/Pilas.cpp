@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 #include "Pilas.hpp"
 
 Pilas::Pilas(){
@@ -143,5 +144,45 @@ void Pilas::mostrarImparesPila()const {
         std::cout << "La pila esta vacia.";
     }
     
+    std::cout << std::endl;
+}
+
+int Pilas::sumarImparesRecursivo() const {
+    
+    std::function<int(const Nodo*)> sumar_impares = [&](const Nodo* actual) -> int {
+        
+        if (actual == nullptr) {
+            return 0;
+        }
+
+        int dato = actual->getDato();
+        int suma_actual = 0;
+
+        if ((dato % 2) != 0) {
+            suma_actual = dato;
+        }
+        return suma_actual + sumar_impares(actual->getSiguiente());
+    };
+    return sumar_impares(Cabeza);
+}
+
+
+
+void Pilas::mostrarImparesReversaFuncional() const {
+
+    std::function<void(const Nodo*)> mostrar_reverso = [&](const Nodo* actual) -> void {
+        
+        if (actual == nullptr) {
+            return;
+        }
+        mostrar_reverso(actual->getSiguiente());
+        int dato = actual->getDato();
+        if ((dato % 2) != 0) { 
+            std::cout << dato << " ";
+        }
+    };
+
+    std::cout << "Impares en Reversa (Pila): ";
+    mostrar_reverso(Cabeza);
     std::cout << std::endl;
 }

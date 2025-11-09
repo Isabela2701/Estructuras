@@ -22,5 +22,7 @@ class Pilas{
     int multiplicarElementospila()const;
     void mostrarParesPila()const;
     void mostrarImparesPila()const;
+    int sumarImparesRecursivo() const; 
+    void mostrarImparesReversaFuncional()const;
 };
 #endif

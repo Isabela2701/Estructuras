@@ -50,7 +50,52 @@ class ListaEnlazada{
             cout << "Head: " << cabeza->dato << ", Tail: " << cola->dato << endl;
         }
     }
+
+    void removerUltimoElemento(){
+        if(cabeza==nullptr){
+            std::cout<<"\nLa lista esta vacia"<<std::endl;
+            return;  
+        }
+        if(cabeza==cola){
+            delete cabeza;
+            cabeza=nullptr;
+            cola=nullptr;
+        }
+        
+        else{
+
+            Nodo* tmp=cabeza;
+            while(tmp->siguiente!=cola){
+                tmp=tmp->siguiente;
+            }
+            delete cola;
+            cola=tmp;
+            tmp->siguiente=nullptr;    
+        } 
+        tamanio--; 
+    }
+
+    void removerPrimerElemento(){
+
+        if(cabeza==nullptr){
+            std::cout<<"\nLa lista esta vacia"<<std::endl;
+        }
+        else{
+            Nodo* tmp= cabeza;
+            cabeza=cabeza->siguiente;
+            delete tmp;
+
+            if(cabeza==nullptr){
+                cola=nullptr;
+            }
+        }
+        tamanio--;
+    }
+
+
 };
+
+
 
 int main (){
 
@@ -58,6 +103,21 @@ int main (){
     lista1.append(30);
     lista1.append(40);
     lista1.append(50);
+    lista1.append(60);
+    lista1.append(70);
+    lista1.append(80);
+    lista1.display();
+    lista1.removerPrimerElemento();
+    lista1.display();
+    lista1.removerUltimoElemento();
+    lista1.display();
+    lista1.removerUltimoElemento();
+    lista1.display();
+    lista1.removerUltimoElemento();
+    lista1.display();
+    lista1.removerUltimoElemento();
+    lista1.display();
+    lista1.removerUltimoElemento();
     lista1.display();
 }
 
