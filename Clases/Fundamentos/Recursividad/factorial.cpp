@@ -1,7 +1,10 @@
 #include <iostream>
 
+
 int factorial_bucle(int n);
 int factorial_recursivo(int n);
+
+
 
 int main(){
     int n;

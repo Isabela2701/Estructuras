@@ -42,6 +42,8 @@ class Lista{
     int sumarImparesRecursivo() const;
     void mostrarImparesReversaFuncional() const;
 
+    void insertionSort();
+
 };
 
 #endif 

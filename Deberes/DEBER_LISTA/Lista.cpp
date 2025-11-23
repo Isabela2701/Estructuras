@@ -366,3 +366,45 @@ void Lista::mostrarImparesReversaFuncional() const {
     mostrar_reverso(Cabeza);
     std::cout << std::endl;
 }
+void Lista::insertionSort() {
+    if (isEmpty() || Cabeza->getSiguiente() == nullptr) {
+        return; // Ya está ordenada
+    }
+
+    Nodo* listaOrdenada = nullptr;  // Nueva lista ordenada
+    Nodo* actual = Cabeza;
+
+    while (actual != nullptr) {
+        Nodo* siguiente = actual->getSiguiente();
+
+        // Caso 1: insertar al inicio de la lista ordenada
+        if (listaOrdenada == nullptr || actual->getDato() < listaOrdenada->getDato()) {
+            actual->setSiguiente(listaOrdenada);
+            listaOrdenada = actual;
+        }
+        else {
+            // Buscar posición correcta
+            Nodo* temp = listaOrdenada;
+            while (temp->getSiguiente() != nullptr &&
+                   temp->getSiguiente()->getDato() < actual->getDato()) {
+                temp = temp->getSiguiente();
+            }
+
+            // Insertar el nodo
+            actual->setSiguiente(temp->getSiguiente());
+            temp->setSiguiente(actual);
+        }
+
+        actual = siguiente;
+    }
+
+    // Actualizar cabeza y cola reales
+    Cabeza = listaOrdenada;
+
+    // Actualizar la cola
+    Nodo* tmp = Cabeza;
+    while (tmp->getSiguiente() != nullptr) {
+        tmp = tmp->getSiguiente();
+    }
+    Cola = tmp;
+}

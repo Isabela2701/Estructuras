@@ -8,7 +8,8 @@ int main() {
 
     lista1.insertarListaInicio(5);
     lista1.insertarListaInicio(3); 
-    lista1.insertarListaInicio(20);  
+    lista1.insertarListaInicio(20); 
+    lista1.insertarListaInicio(2); 
     lista1.insertarListaInicio(10); 
     lista1.insertarListaInicio(80);  
     lista1.insertarListaFinal(2);   
@@ -50,4 +51,14 @@ int main() {
     lista1.mostrarParesLista();
     lista1.mostrarImparesLista();
     lista1.mostrarImparesReversaFuncional();
+
+
+    std::cout << "\nLista antes de ordenar: ";
+    lista1.mostrarLista();
+
+    lista1.insertionSort();
+
+    std::cout << "Lista ordenada: ";
+    lista1.mostrarLista();
+
 }
