@@ -29,7 +29,8 @@ class Lista{
     int consultarCabeza()const;
     int consultarCola()const;
     bool isEmpty()const;
-
+    int getSize();
+    Nodo* getNodo(int index) const;
 
     int sumarElementosLista()const;
     int multiplicarElementosLista()const;
@@ -42,7 +43,10 @@ class Lista{
     int sumarImparesRecursivo() const;
     void mostrarImparesReversaFuncional() const;
 
+    void bubbleSort();
     void insertionSort();
+    void selectionSort();
+    void shellSort();
 
 };
 

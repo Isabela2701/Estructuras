@@ -366,6 +366,7 @@ void Lista::mostrarImparesReversaFuncional() const {
     mostrar_reverso(Cabeza);
     std::cout << std::endl;
 }
+
 void Lista::insertionSort() {
     if (isEmpty() || Cabeza->getSiguiente() == nullptr) {
         return; // Ya está ordenada
@@ -408,3 +409,121 @@ void Lista::insertionSort() {
     }
     Cola = tmp;
 }
+
+void Lista::bubbleSort() {
+    if (isEmpty() || Cabeza->getSiguiente() == nullptr) return;
+
+    bool swapped;
+    do {
+        swapped = false;
+        Nodo* actual = Cabeza;
+        Nodo* siguiente = actual->getSiguiente();
+
+        while (siguiente != nullptr) {
+            if (actual->getDato() > siguiente->getDato()) {
+                int temp = actual->getDato();
+                actual->setDato(siguiente->getDato());
+                siguiente->setDato(temp);
+                swapped = true;
+            }
+            actual = siguiente;
+            siguiente = siguiente->getSiguiente();
+        }
+    } while (swapped);
+}
+
+void Lista::selectionSort() {
+    if (isEmpty() || Cabeza->getSiguiente() == nullptr) return;
+
+    for (Nodo* i = Cabeza; i != nullptr; i = i->getSiguiente()) {
+        Nodo* minNode = i;
+
+        for (Nodo* j = i->getSiguiente(); j != nullptr; j = j->getSiguiente()) {
+            if (j->getDato() < minNode->getDato())
+                minNode = j;
+        }
+
+        // Intercambio de valores
+        int temp = i->getDato();
+        i->setDato(minNode->getDato());
+        minNode->setDato(temp);
+    }
+}
+
+
+int Lista::getSize() {
+    int c = 0;
+    for (Nodo* t = Cabeza; t != nullptr; t = t->getSiguiente()) c++;
+    return c;
+}
+
+
+Nodo* Lista::getNodo(int index) const {
+    if (index < 1) return nullptr;
+    Nodo* actual = Cabeza;
+    int c = 1;
+    while (actual != nullptr && c < index) {
+        actual = actual->getSiguiente();
+        c++;
+    }
+    return actual;
+}
+
+
+void Lista::shellSort() {
+    int n = getSize();
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; i++) {
+            Nodo* nodoI = getNodo(i);
+            int temp = nodoI->getDato();
+
+            int j = i;
+            while (j >= gap && getNodo(j - gap)->getDato() > temp) {
+                getNodo(j)->setDato(getNodo(j - gap)->getDato());
+                j -= gap;
+            }
+            getNodo(j)->setDato(temp);
+        }
+    }
+}
+
+Nodo* dividir(Nodo* cabeza) {
+    Nodo* rapido = cabeza->getSiguiente();
+    Nodo* lento = cabeza;
+
+    while (rapido != nullptr && rapido->getSiguiente() != nullptr) {
+        rapido = rapido->getSiguiente()->getSiguiente();
+        lento = lento->getSiguiente();
+    }
+
+    Nodo* mitad = lento->getSiguiente();
+    lento->setSiguiente(nullptr);
+    return mitad;
+}
+
+
+Nodo* merge(Nodo* a, Nodo* b) {
+    if (!a) return b;
+    if (!b) return a;
+
+    if (a->getDato() <= b->getDato()) {
+        a->setSiguiente(merge(a->getSiguiente(), b));
+        return a;
+    } else {
+        b->setSiguiente(merge(a, b->getSiguiente()));
+        return b;
+    }
+}
+
+
+Nodo* mergeSortRec(Nodo* cabeza) {
+    if (!cabeza || !cabeza->getSiguiente())
+        return cabeza;
+
+    Nodo* mitad = dividir(cabeza);
+    Nodo* izquierda = mergeSortRec(cabeza);
+    Nodo* derecha   = mergeSortRec(mitad);
+
+    return merge(izquierda, derecha);
+}
+
