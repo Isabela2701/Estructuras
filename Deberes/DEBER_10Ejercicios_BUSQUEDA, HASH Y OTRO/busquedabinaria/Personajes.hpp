@@ -4,18 +4,18 @@
 #include <iostream>
 using namespace std;
 
-class Personaje{
+class Pokemons{
     private:
     string nombre;
     int posicion;
 
     public:
-    Personaje(string Nombre, int Posicion){
+    Pokemons(string Nombre, int Posicion){
         nombre=Nombre;
         posicion=Posicion;
     }
 
-    Personaje(){
+    Pokemons(){
     }
     
     void setNombre(string Nombre){
@@ -25,7 +25,7 @@ class Personaje{
         posicion=Posicion;
     }
 
-    void imprimirPersonaje(){
+    void imprimirPokemons(){
         cout<<"Nombre del personaje: "<<nombre<<endl;
         cout<<"Posicion: "<<posicion<<endl;
     }

@@ -7,7 +7,7 @@
 using namespace std;
 class Busqueda{
     public:
-    static int busquedaNombre(Personaje** listaBuscar,string nombreBuscar, int size){
+    static int busquedaNombre(Pokemons** listaBuscar,string nombreBuscar, int size){
         int izquierda=0;
         int derecha=size - 1;
 
@@ -27,7 +27,7 @@ class Busqueda{
     }
 
     // muestra la información del personaje anterior y siguiente al nombre buscado
-    static void mostrarVecinos(Personaje** listaBuscar, const string& nombreBuscar, int size) {
+    static void mostrarVecinos(Pokemons** listaBuscar, const string& nombreBuscar, int size) {
         int idx = busquedaNombre(listaBuscar, nombreBuscar, size);
         if (idx == -1) {
             cout << "No se encontro el personaje: " << nombreBuscar << endl;
@@ -35,26 +35,26 @@ class Busqueda{
         }
 
         cout << "Personaje encontrado en indice " << idx << ":\n";
-        listaBuscar[idx]->imprimirPersonaje();
+        listaBuscar[idx]->imprimirPokemons();
         cout << '\n';
 
         if (idx > 0) {
             cout << "Anterior:\n";
-            listaBuscar[idx - 1]->imprimirPersonaje();
+            listaBuscar[idx - 1]->imprimirPokemons();
         } else {
             cout << "No hay personaje anterior.\n";
         }
 
         if (idx + 1 < size) {
             cout << "Siguiente:\n";
-            listaBuscar[idx + 1]->imprimirPersonaje();
+            listaBuscar[idx + 1]->imprimirPokemons();
         } else {
             cout << "No hay personaje siguiente.\n";
         }
     }
 
     // lista todos los personajes cuyo nombre comienza con la letra dada (case-insensitive)
-    static void listarPorInicial(Personaje** lista, char letra, int size) {
+    static void listarPorInicial(Pokemons** lista, char letra, int size) {
         char objetivo = static_cast<char>(std::tolower(static_cast<unsigned char>(letra)));
         int encontrados = 0;
         for (int i = 0; i < size; ++i) {
@@ -62,7 +62,7 @@ class Busqueda{
             if (!nom.empty()) {
                 char primera = static_cast<char>(std::tolower(static_cast<unsigned char>(nom.front())));
                 if (primera == objetivo) {
-                    lista[i]->imprimirPersonaje();
+                    lista[i]->imprimirPokemons();
                     ++encontrados;
                 }
             }
